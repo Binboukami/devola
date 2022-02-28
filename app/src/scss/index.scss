@@ -1,0 +1,56 @@
+html {
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  background: gainsboro;
+}
+
+.todo-card {
+  text-align: start;
+  width: 100%;
+  margin: 1rem 0;
+  .vs-card {
+    max-width: 100%;
+  }
+  .vs-card__text {
+    display: flex !important;
+    align-items: center;
+  }
+  .todo-card__checkbox {
+    margin: 0 2rem 0 0;
+  }
+  .todo-card__content {
+    width: 100%;
+    .todo-card__edit-field {
+      margin: 0 !important;
+
+      input {
+        border: 0;
+        border-radius: 0;
+        padding: 0.025em 0;
+        display: block;
+        font-weight: bold;
+      }
+    }
+    .edit-field__date input {
+      font-family: inherit;
+      font-size: 0.83em !important;
+      margin-block-start: 1.67em;
+      cursor: pointer;
+    }
+    .edit-field__title input {
+      font-size: 1.17em !important;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+    }
+    .edit-field__content input {
+      font-size: inherit;
+    }
+  }
+  .todo-card__interactions {
+  }
+}
+
+//Form
+.vs-input-parent {
+  margin: 2rem 0;
+}
