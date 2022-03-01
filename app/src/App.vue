@@ -1,5 +1,33 @@
 <template>
   <div id="app">
+    <div class="center examplex">
+      <vs-navbar
+        not-line
+        color="#7d33ff"
+        text-white
+        square
+        center-collapsed
+        v-model="active"
+      >
+        <vs-navbar-item :active="active == 'todos'" id="todos">
+          Todos
+        </vs-navbar-item>
+        <vs-navbar-item>
+          <vs-button class="navbar__button" animation-type="vertical">
+            <i class="bx bxs-quote-alt-right"></i>
+            <template #animate> Devola </template>
+          </vs-button>
+        </vs-navbar-item>
+        <vs-navbar-item :active="active == 'license'" id="license">
+          Github
+        </vs-navbar-item>
+      </vs-navbar>
+      <div class="square">
+        <div class="child">child 1</div>
+        <div class="child">child 2</div>
+      </div>
+    </div>
+
     <vs-dialog :loading="this.animState.loading" v-model="addForm">
       <template #header>
         <h4>Add a new todo item</h4>
@@ -52,11 +80,17 @@
       </vs-tooltip>
     </vs-row>
 
-    <vs-row class="todos" justify="center">
+    <vs-row class="todos" id="todos" justify="center">
       <vs-col w="12">
         <h1>Todos</h1>
       </vs-col>
-      <vs-col w="8" v-for="todo in this.$getTodo" :key="todo.id">
+      <vs-col
+        xs="12"
+        sm="10"
+        lg="8"
+        v-for="todo in this.$getTodo"
+        :key="todo.id"
+      >
         <todoItem
           :todo="todo"
           :editMode="editMode"
@@ -123,6 +157,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      active: false,
       animState: {
         loading: false,
       },

@@ -3,6 +3,9 @@ html {
   font-family: "Montserrat", sans-serif;
   background: gainsboro;
 }
+.navbar__button {
+  width: 16ch !important;
+}
 
 .todo-card {
   text-align: start;
@@ -54,4 +57,12 @@ html {
 //Form
 .vs-input-parent {
   margin: 2rem 0;
+}
+
+//! Media Queries
+
+@media screen and (max-width: 375px) {
+  .todo-card__checkbox {
+    margin: 0 1rem 0 0 !important;
+  }
 }
