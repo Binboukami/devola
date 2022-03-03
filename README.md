@@ -1,6 +1,5 @@
 ## Devola
-
-A crud todo app powered by Laravel and VueJS
+A CRUD Todo application powered by VueJs and Laravel.
 
 ## Resources
 
@@ -88,4 +87,3 @@ i.e:
 ```../api/todos/16```:
 
 Deletes the todo with ```id: 16```.
-
