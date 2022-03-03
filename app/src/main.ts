@@ -13,6 +13,9 @@ Vue.use(
   Axios.create({
     baseURL: "http://localhost:8000/api/",
     timeout: 3000,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
   })
 );
 
