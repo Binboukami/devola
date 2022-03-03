@@ -10,10 +10,11 @@
       </template>
       <img src="/logo2.png" alt="DEVOLA" />
       <template #right>
-        <vs-button icon
-          ><a href="https://github.com/Binboukami" target="blank"></a
-          ><i class="bx bxl-github"></i
-        ></vs-button>
+        <vs-button icon>
+          <a href="https://github.com/Binboukami" target="blank">
+            <i class="bx bxl-github"></i>
+          </a>
+        </vs-button>
         <vs-button>
           <a href="mailto:luiz.butkeivicz@gmail.com" target="blank">Contact</a>
         </vs-button>
