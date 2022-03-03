@@ -8,47 +8,58 @@ export default new Vuex.Store({
     todos: Array(0),
   },
   getters: {
-    $getTodo: (state) => {
-      return state.todos.filter((todo) => {
-        return todo.status == false;
-      });
+    $getTodos: (state) => {
+      return state.todos.filter((f: any) => f.is_done == false);
+    },
+    $getDoneTodos: (state) => {
+      return state.todos.filter((f: any) => f.is_done == true);
     },
   },
   mutations: {
+    getTodos(state) {
+      Vue.axios.get("/todos").then((res: any) => {
+        state.todos = res.data;
+      });
+    },
+    addTodo(state, payload) {
+      Vue.axios.post("/todos", payload);
+    },
+    updateTodoStatus(state, payload) {
+      payload.is_done = !payload.is_done;
+    },
+    updateTodo(state, payload) {
+      Vue.axios.put(`/todos/${payload.id}`, payload);
+    },
     deleteTodo(state, payload) {
-      state.todos.splice(state.todos.indexOf(payload), 1);
-    },
-    getLocalStorage(state) {
-      if (localStorage.length > 0 && localStorage.todos) {
-        state.todos = JSON.parse(localStorage.todos);
-      }
-      // Tratativa de erro
-    },
-    setLocalStorage(state) {
-      if (state.todos) {
-        localStorage.setItem("todos", JSON.stringify(state.todos));
-      }
-    },
-    updateLocalStorage(state, payload) {
-      if (state.todos) {
-        state.todos.push({ ...payload, id: Date.now() });
-      }
+      Vue.axios.delete(`/todos/${payload.id}`);
     },
   },
   actions: {
+    async getTodos({ commit }) {
+      await commit("getTodos");
+    },
+    async addTodo({ commit, dispatch }, payload) {
+      await commit("addTodo", payload);
+      alert(`Sucessfully added new todo`);
+      await dispatch("getTodos");
+    },
+    updateTodoStatus({ commit, dispatch }, payload) {
+      commit("updateTodoStatus", payload);
+      dispatch("updateTodo", payload);
+    },
+    async updateTodo({ commit, dispatch }, payload) {
+      await commit("updateTodo", payload);
+    },
     async deleteTodo({ commit, dispatch }, payload) {
-      await commit("deleteTodo", payload);
-      await dispatch("setLocalStorage");
-    },
-    async getLocalStorage({ commit }) {
-      await commit("getLocalStorage");
-    },
-    async setLocalStorage({ commit }) {
-      await commit("setLocalStorage");
-    },
-    async updateLocalStorage({ commit, dispatch }, payload) {
-      await commit("updateLocalStorage", payload);
-      await dispatch("setLocalStorage");
+      if (
+        confirm(
+          `Are you sure you want to delete ${payload.title.toUpperCase()}?\nThis action cannot be undone once it is completed.`
+        )
+      ) {
+        await commit("deleteTodo", payload);
+        dispatch("getTodos");
+      }
+      return;
     },
   },
   modules: {},
