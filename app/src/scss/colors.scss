@@ -1,0 +1,37 @@
+//Color definitions
+$p-base: #d32f2f;
+$p-light: #f44336;
+$p-dark: #b71c1c;
+
+$n-base: #bdbdbd;
+$n-light: #f5f5f5;
+$n-dark: #757575;
+
+$t-base: #424242;
+$t-light: #eeeeee;
+$t-dark: #1b1b1b;
+
+//Colors array mapping
+$colors: (
+  primary: (
+    base: $p-base,
+    light: $p-light,
+    dark: $p-dark,
+  ),
+  neutral: (
+    base: $n-base,
+    light: $n-light,
+    dark: $n-dark,
+  ),
+  typography: (
+    base: $t-base,
+    light: $t-light,
+    dark: $t-dark,
+  ),
+);
+
+// Kevin Powell's SCSS color mapping function
+@function clr($base, $shade: base) {
+  $color: map-get(map-get($colors, $base), $shade);
+  @return $color;
+}
