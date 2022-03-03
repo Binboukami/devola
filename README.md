@@ -56,22 +56,22 @@ As the default for laravel api applications, the endpoints are exposed through `
 Below are the following resources and accepted endpoints for the api.
 
 ## Todos
-```GET: ``` ```../api/todos/```
-
+### GET:
+```../api/todos/```
 Returns all todos from the database.
 
-```POST: ``` ```../api/todos/```
-
+### POST:
+``` ```../api/todos/```
 Stores a todo in the database. Accepts the following data from the request:
 
-```title```: String **Obrigatory**
+  ##### title: ```string```
 
-```content```: String
+  ##### content: ```string``` (optional)
 
-```date```: Date
+  ##### date: ```Date``` __(optional)__
 
-```POST: ``` ```../api/todos/{id}```
-
+### POST:
+```../api/todos/{id}```
 Updates the respective todo with the id received at the url with data from the request. Accepts the same field as the ```POST:``` method.
 
 i.e:
@@ -79,8 +79,8 @@ i.e:
 
 Updates the todo with ```id: 1```.
 
-```DELET: ``` ```../api/todos/{id}```
-
+### DELETE:
+```../api/todos/{id}```
 Deletes the respective todo with the id received at the url.
 
 i.e:
