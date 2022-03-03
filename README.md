@@ -14,6 +14,11 @@ A CRUD Todo application powered by VueJs and Laravel.
 
 **PHP**: ^7.4.0
 
+### Disclaimer
+For the frontend implementation the vue-cli might be required to run the commands.
+
+**Vue-CLI**: ^5.0
+
 ## Setup
 The frontend intructions are the same for both setup types. To avoid repetition they're stated once after the backend instructions.
 
