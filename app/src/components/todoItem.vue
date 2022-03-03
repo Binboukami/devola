@@ -1,58 +1,68 @@
 <template>
   <div id="todoItem">
-    <vs-card type="1" :class="['todo-card']">
+    <vs-card
+      type="1"
+      :class="['todo-card', { 'todo-card__done': todo.is_done }]"
+    >
       <template #text>
         <div class="todo-card__checkbox">
           <vs-checkbox
-            class="todo-card__status"
-            @click="$emit('delete')"
-            :value="todo.status"
-            name="status"
+            :class="['todo-card__status']"
+            @click="$emit('toggleStatus')"
+            :value="todo.is_done"
           ></vs-checkbox>
         </div>
         <div class="todo-card__content">
           <vs-input
             type="date"
             class="todo-card__edit-field edit-field__date"
-            v-if="editMode"
+            v-if="todo.is_editing"
             :value="todo.date"
             name="date"
             @change="$emit('update', $event.target)"
           >
           </vs-input>
 
-          <h5 v-if="!editMode">{{ todo.date }}</h5>
+          <h5 v-if="!todo.is_editing">{{ todo.date }}</h5>
           <vs-input
             class="todo-card__edit-field edit-field__title"
-            v-if="editMode"
+            v-if="todo.is_editing"
             :value="todo.title"
             name="title"
             @change="$emit('update', $event.target)"
           >
           </vs-input>
-          <h3 v-if="!editMode">
+          <h3 v-if="!todo.is_editing">
             {{ todo.title }}
           </h3>
           <vs-input
             class="todo-card__edit-field edit-field__content"
-            v-if="editMode"
+            v-if="todo.is_editing"
             :value="todo.content"
             name="content"
             @change="$emit('update', $event.target)"
           >
           </vs-input>
-          <p v-if="!editMode">{{ todo.content }}</p>
+          <p v-if="!todo.is_editing">{{ todo.content }}</p>
         </div>
         <div class="todo-card__interactions">
+          <vs-tooltip v-if="todo.is_editing">
+            <vs-button icon>
+              <i :class="['bx', 'bxs-trash']" @click="$emit('delete')"></i>
+            </vs-button>
+            <template #tooltip>
+              {{ "Delete" }}
+            </template>
+          </vs-tooltip>
           <vs-tooltip>
             <vs-button icon>
               <i
-                :class="['bx', editMode ? 'bx-check' : 'bxs-pencil']"
+                :class="['bx', todo.is_editing ? 'bx-check' : 'bxs-pencil']"
                 @click="$emit('edit')"
               ></i>
             </vs-button>
             <template #tooltip>
-              {{ editMode ? "Confirm" : "Edit" }}
+              {{ todo.is_editing ? "Confirm" : "Edit" }}
             </template>
           </vs-tooltip>
         </div>
@@ -68,7 +78,6 @@ export default {
     todo: {
       type: Object,
     },
-    editMode: Boolean,
   },
 };
 </script>
