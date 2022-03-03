@@ -1,18 +1,103 @@
+// Imports
+@import "./colors.scss";
+
+//Definitions
 html {
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
-  background: gainsboro;
+  background: clr(typography, light);
+}
+a {
+  text-decoration: none;
+  color: clr(typography, light);
+  font-weight: bold;
+  &:visited {
+    color: clr(neutral, light);
+  }
+}
+.vs-navbar-content {
+  position: fixed !important;
+}
+.vs-navbar {
+  top: 0;
+  background: clr(primary, base);
+  color: clr(typography, light);
 }
 .navbar__button {
   width: 16ch !important;
 }
 
+.vs-button {
+  background: clr(primary, dark) !important;
+  color: white !important;
+  padding: 4px !important;
+  .vs-button__content {
+    padding: 4px !important;
+  }
+}
+
+.todo-form-add {
+  .vs-input-content {
+    input {
+      width: 100%;
+      background: clr(typography, light) !important;
+    }
+  }
+  .todo-form__content {
+    input {
+      min-height: 4rem !important;
+    }
+  }
+}
+
+.app-interactions {
+  .vs-button {
+    margin: 0 0 0 auto;
+    i {
+      margin: 0 0.25rem !important;
+    }
+  }
+}
+
+.todos {
+  margin-top: 4rem !important;
+}
+
+//Empty todos definitions
+.todos-empity {
+  color: clr(primary, base);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  .app-interactions {
+    width: 100%;
+    .vs-button {
+      margin: 0 auto;
+      i {
+        margin: 0 0.25rem !important;
+      }
+    }
+  }
+  .todos-empity__icon {
+    font-size: 4rem !important;
+    background: linear-gradient(clr(primary, light), clr(primary, dark));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+}
+
+// Todo card definitions
 .todo-card {
   text-align: start;
   width: 100%;
   margin: 1rem 0;
+
   .vs-card {
     max-width: 100%;
+    background: clr(neutral, light);
   }
   .vs-card__text {
     display: flex !important;
@@ -33,6 +118,7 @@ html {
         padding: 0.025em 0;
         display: block;
         font-weight: bold;
+        border-bottom: 0.125rem solid clr(typography, light);
       }
     }
     .edit-field__date input {
@@ -51,6 +137,37 @@ html {
     }
   }
   .todo-card__interactions {
+    display: inline-flex;
+  }
+}
+
+.todo-card__done {
+  .vs-card {
+    background: clr(neutral, base) !important;
+    & > * {
+      color: clr(neutral, dark);
+    }
+    .todo-card__checkbox {
+      .vs-icon-check {
+        background: clr(neutral, dark) !important;
+      }
+    }
+  }
+  .todo-card__content {
+    width: 100%;
+    .todo-card__edit-field {
+      margin: 0 !important;
+
+      input {
+        border: 0;
+        border-radius: 0;
+        width: 75%;
+        padding: 0.025em 0;
+        display: block;
+        font-weight: bold;
+        background: clr(neutral, base);
+      }
+    }
   }
 }
 
