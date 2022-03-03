@@ -64,7 +64,7 @@
     <vs-row
       justify="center"
       class="todos todos-empity"
-      v-if="!this.$getTodos.length"
+      v-if="!this.$getTodos.length && !this.$getDoneTodos.length"
     >
       <vs-col w="12">
         <h2>Ops!</h2>
