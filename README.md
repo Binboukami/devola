@@ -15,7 +15,7 @@ A CRUD Todo application powered by VueJs and Laravel.
 **PHP**: ^7.4.0
 
 ## Setup
-The frontend intructions are the same for both setup types. To avoid repetition they stated once after the backend instructions.
+The frontend intructions are the same for both setup types. To avoid repetition they're stated once after the backend instructions.
 
 ### Backend With [XAMPP](https://www.apachefriends.org/index.html)
 ```bash
@@ -37,7 +37,10 @@ $ git clone https://github.com/Binboukami/devola.git
 # Start backend server at localhost:8000
 $ cd api
 $ php artisan serve
+```
 
+## Frontend
+```bash
 # Start front-end development server at localhost:8080
 $ cd app
 $ npm run dev
@@ -61,7 +64,7 @@ Below are the following resources and accepted endpoints for the api.
 Returns all todos from the database.
 
 ### POST:
-``` ```../api/todos/```
+```../api/todos/```
 Stores a todo in the database. Accepts the following data from the request:
 
   ##### title: ```string```
