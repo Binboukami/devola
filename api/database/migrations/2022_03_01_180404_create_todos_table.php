@@ -17,6 +17,8 @@ class CreateTodosTable extends Migration
             $table->id();
             $table->string('title', 128);
             $table->string('content', 255)->nullable();
+            $table->boolean('is_done')->nullable()->default(false);
+            $table->boolean('is_editing')->default(false);
             $table->date('date')->nullable();
             $table->timestamps();
         });

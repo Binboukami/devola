@@ -14,17 +14,17 @@ class Todos extends Controller
     }
 
     public function store(Request $request){
-        //Parse conteúdo da request e armazenar
 
         $todo = new Todo;
         
         $todo->title = $request->title;
         $todo->content = $request->content;
+        $todo->is_done = $request->isDone;
         $todo->date= $request->date;
 
         $todo->save();
-        
-        return redirect('/');
+
+        return $todo;
     }
 
     public function update(Request $request){
