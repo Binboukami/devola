@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/todos', [Todos::class, 'index']);
+Route::get('/todos', [Todos::class, 'index'])->name('todos');
 
 Route::post('/todos', [Todos::class, 'store']);
 

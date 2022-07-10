@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Todo;
+use Carbon\Carbon;
 
 class Todos extends Controller
 {
@@ -15,15 +16,20 @@ class Todos extends Controller
 
     public function store(Request $request){
 
-        $todo = new Todo;
-        
-        $todo->title = $request->title;
-        $todo->content = $request->content;
-        $todo->is_done = $request->isDone;
-        $todo->date= $request->date;
+      $request->validate([
+        "title" => ["required"],
+        "content" => ["required"],
+        "date" => ["required", "date"]
+      ]);
 
-        $todo->save();
+      $todo = Todo::query()->create([
 
+        "title" => $request->title,
+        "content" => $request->content,
+        "date"=> $request->date
+      ]);
+
+      if($todo)
         return $todo;
     }
 
